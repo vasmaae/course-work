@@ -17,6 +17,7 @@ public class KnapsackManager
     public void Run()
     {
         Storage.Reset();
+
         while (solver.GetState().Items.Count != 0)
         {
             Storage.AddState(solver.Step());
