@@ -36,15 +36,20 @@ public partial class MainForm : Form
             KnapsackState? state = manager.Storage.Reset();
             if (state != null)
             {
-                panelSteps.Enabled = true;
-                groupBoxVisualization.Enabled = true;
-                groupBoxStatus.Enabled = true;
-                groupBoxSteps.Enabled = true;
-                groupBoxKnapsack.Enabled = true;
-                UpdateVisualization(state);
-                buttonPrevious.Enabled = false;
+                InitializeStateShowing(state);
             }
         }
+    }
+
+    private void InitializeStateShowing(KnapsackState state)
+    {
+        panelSteps.Enabled = true;
+        groupBoxVisualization.Enabled = true;
+        groupBoxStatus.Enabled = true;
+        groupBoxSteps.Enabled = true;
+        groupBoxKnapsack.Enabled = true;
+        UpdateVisualization(state);
+        buttonPrevious.Enabled = false;
     }
 
     private void UpdateVisualization(KnapsackState state)
@@ -151,15 +156,10 @@ public partial class MainForm : Form
         {
             try
             {
-                KnapsackParameters parameters = new KnapsackParameters(new List<Item>(){ new Item(1, 1) }, 1);
+                KnapsackParameters parameters = new KnapsackParameters(new List<Item>(), 1);
                 manager = new KnapsackManager(parameters);
                 manager.Storage.LoadFromFile(openFileDialog.FileName);
-                panelSteps.Enabled = true;
-                groupBoxVisualization.Enabled = true;
-                groupBoxStatus.Enabled = true;
-                groupBoxSteps.Enabled = true;
-                groupBoxKnapsack.Enabled = true;
-                UpdateVisualization(manager.Storage.Reset());
+                InitializeStateShowing(manager.Storage.Reset());
                 MessageBox.Show("Загрузка прошла успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (IOException ex)
