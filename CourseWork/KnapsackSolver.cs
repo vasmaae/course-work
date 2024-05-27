@@ -37,22 +37,29 @@ public class KnapsackSolver
             return GetState();
         }
 
-        if (currentWeight + items[0].Weight > capacity || currentWeight == capacity || items.Count == 0)
-        {
-            items.Clear();
-            step++;
-            return GetState();
-        }
-
         if (currentWeight + items[0].Weight <= capacity)
         {
             currentItems.Add(items[0]);
             currentWeight += items[0].Weight;
             currentValue += items[0].Value;
             items.Remove(items[0]);
+            step++;
+            return GetState();
         }
 
-        step++;
+        if (!FittingObjects() || currentWeight == capacity || items.Count == 0)
+        {
+            items.Clear();
+            step++;
+            return GetState();
+        }
+        else if (FittingObjects())
+        {
+            items.Remove(items[0]);
+            step++;
+            return GetState();
+        }
+
         return GetState();
     }
 
@@ -66,6 +73,16 @@ public class KnapsackSolver
         currentItems = new List<Item>(state.Items);
         currentWeight = state.TotalWeight;
         currentValue = state.TotalValue;
+    }
+
+    private bool FittingObjects()
+    {
+        foreach (Item item in items)
+        {
+            if (currentWeight + item.Weight <= capacity)
+                return true;
+        }
+        return false;
     }
 }
 
