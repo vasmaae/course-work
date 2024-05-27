@@ -29,15 +29,13 @@ public class KnapsackSolver
             step++;
             return GetState();
         }
-
-        if (step == 1)
+        else if (step == 1)
         {
             items.Sort((a, b) => b.ValuePerWeight().CompareTo(a.ValuePerWeight()));
             step++;
             return GetState();
         }
-
-        if (currentWeight + items[0].Weight <= capacity)
+        else if (currentWeight + items[0].Weight <= capacity)
         {
             currentItems.Add(items[0]);
             currentWeight += items[0].Weight;
@@ -46,8 +44,7 @@ public class KnapsackSolver
             step++;
             return GetState();
         }
-
-        if (!FittingObjects() || currentWeight == capacity || items.Count == 0)
+        else if (!FittingObjects() || currentWeight == capacity || items.Count == 0)
         {
             items.Clear();
             step++;
