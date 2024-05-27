@@ -55,9 +55,9 @@
             // 
             // buttonSubmit
             // 
-            buttonSubmit.Location = new Point(12, 129);
+            buttonSubmit.Location = new Point(12, 156);
             buttonSubmit.Name = "buttonSubmit";
-            buttonSubmit.Size = new Size(209, 23);
+            buttonSubmit.Size = new Size(350, 23);
             buttonSubmit.TabIndex = 3;
             buttonSubmit.Text = "Принять";
             buttonSubmit.UseVisualStyleBackColor = true;
@@ -128,9 +128,9 @@
             // 
             // buttonReset
             // 
-            buttonReset.Location = new Point(12, 158);
+            buttonReset.Location = new Point(12, 128);
             buttonReset.Name = "buttonReset";
-            buttonReset.Size = new Size(349, 23);
+            buttonReset.Size = new Size(209, 23);
             buttonReset.TabIndex = 11;
             buttonReset.Text = "Сбросить";
             buttonReset.UseVisualStyleBackColor = true;

@@ -42,6 +42,7 @@ public partial class MainForm : Form
                 groupBoxSteps.Enabled = true;
                 groupBoxKnapsack.Enabled = true;
                 UpdateVisualization(state);
+                buttonPrevious.Enabled = false;
             }
         }
     }
@@ -49,6 +50,9 @@ public partial class MainForm : Form
     private void UpdateVisualization(KnapsackState state)
     {
         visualizer.Visualize(state);
+
+        buttonNext.Enabled = true;
+        buttonPrevious.Enabled = true;
 
         labelTotalSteps.Text = $"Количество шагов:\n{manager.Storage.CountOfStates}";
         labelCurrentStep.Text = $"Текущий шаг:\n{state.NumStep}";
@@ -86,9 +90,14 @@ public partial class MainForm : Form
         KnapsackState state = manager.Storage.GetNextState();
         UpdateVisualization(state);
 
-        if (state.NumStep == manager.Storage.CountOfStates && checkBoxShowMessageBox.Checked)
+        if (state.NumStep == manager.Storage.CountOfStates)
         {
-            MessageBox.Show("Рюкзак заполнен", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            buttonNext.Enabled = false;
+
+            if (checkBoxShowMessageBox.Checked)
+            {
+                MessageBox.Show("Рюкзак заполнен", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 
@@ -101,6 +110,11 @@ public partial class MainForm : Form
 
         KnapsackState state = manager.Storage.GetPreviousState();
         UpdateVisualization(state);
+        
+        if (state.NumStep == 1)
+        {
+            buttonPrevious.Enabled = false;
+        }
     }
 
     private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
