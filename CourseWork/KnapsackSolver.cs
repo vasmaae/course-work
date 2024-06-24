@@ -65,13 +65,6 @@ public class KnapsackSolver
         return new KnapsackState(items, capacity, currentItems, currentWeight, currentValue, step);
     }
 
-    public void RestoreState(KnapsackState state)
-    {
-        currentItems = new List<Item>(state.Items);
-        currentWeight = state.TotalWeight;
-        currentValue = state.TotalValue;
-    }
-
     private bool FittingObjects()
     {
         foreach (Item item in items)
@@ -86,8 +79,8 @@ public class KnapsackSolver
 [Serializable]
 public class Item
 {
-    public int Weight { get; set; }
-    public int Value { get; set; }
+    public int Weight { get; }
+    public int Value { get; }
 
     public Item(int weight, int value)
     {

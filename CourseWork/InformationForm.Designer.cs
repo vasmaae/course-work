@@ -118,7 +118,7 @@
             Controls.Add(groupBoxUsing);
             Controls.Add(groupBoxDescription);
             Name = "InformationForm";
-            Text = "InformationForm";
+            Text = "Информация";
             groupBoxDescription.ResumeLayout(false);
             groupBoxDescription.PerformLayout();
             groupBoxUsing.ResumeLayout(false);
